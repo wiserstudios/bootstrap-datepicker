@@ -37,8 +37,12 @@
 		if (this.isInput) {
 			this.element.on({
 				focus: $.proxy(this.show, this),
-				blur: $.proxy(this.hide, this),
-				keyup: $.proxy(this.update, this)
+        keydown: $.proxy(function (evt) {
+          if (evt.keyCode == '9') {
+            this.hide()
+          }
+        }, this),
+        keyup: $.proxy(this.update, this)
 			});
 		} else {
 			if (this.component){
